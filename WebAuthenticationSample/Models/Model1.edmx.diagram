@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="241f94c79c6f4b809b1f8ff0be2d18e6" Name="Diagram1">
         <EntityTypeShape EntityType="WebAuthenticationModel.tbllogin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebAuthenticationModel.tblRegistration" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

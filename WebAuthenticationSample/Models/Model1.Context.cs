@@ -26,5 +26,6 @@ namespace WebAuthenticationSample.Models
         }
     
         public virtual DbSet<tbllogin> tbllogins { get; set; }
+        public virtual DbSet<tblRegistration> tblRegistrations { get; set; }
     }
 }
