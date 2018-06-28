@@ -269,9 +269,9 @@ namespace WebAuthenticationSample.Controllers
         {
             if (ModelState.IsValid)
             {
-                tblRegistration tblRegistration = new tblRegistration();
-                UpdateModel(tblRegistration);//UpdateModel<Customer>(customers);
-                entities.Entry(tblRegistration).State = EntityState.Modified;
+                tblRegistration tblRegistration = new tblRegistration();              
+                UpdateModel(tblRegistration);//UpdateModel<Customer>(customers);               
+                entities.Entry(tblRegistration).State = EntityState.Modified;                
                 entities.SaveChanges();
                 return RedirectToAction("EditView");
             }
