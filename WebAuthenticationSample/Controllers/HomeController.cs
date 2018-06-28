@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -43,11 +44,11 @@ namespace WebAuthenticationSample.Controllers
             return View();
         }
 
-        [Authorize]
-        public ActionResult Delete()
-        {
-            return View();
-        }
+        //[Authorize]
+        //public ActionResult Delete()
+        //{
+        //    return View();
+        //}
 
 
         public ActionResult About()
@@ -101,7 +102,7 @@ namespace WebAuthenticationSample.Controllers
                         }
                         else if (dataitem.Role == "Delete")
                         {
-                            return RedirectToAction("Delete");
+                            return RedirectToAction("Deleteview");
                         }
                         else
                             return RedirectToAction("Index");
@@ -109,7 +110,7 @@ namespace WebAuthenticationSample.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Something Wrong : Username or Password invalid ^_^");
+                    ModelState.AddModelError("", "Something Wrong : Username or Password invalid !!");
                     return View();
                 }
             }
@@ -133,7 +134,7 @@ namespace WebAuthenticationSample.Controllers
         [Authorize(Roles = "Create")]
         [HttpGet]
         public ActionResult Registration()
-        {
+        {            
             return View();
         }
 
@@ -201,5 +202,46 @@ namespace WebAuthenticationSample.Controllers
         }
 
 
+        public ActionResult Deleteview()
+        {
+            List<tblRegistration> partialViews = entities.tblRegistrations.ToList();
+            return View(partialViews);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tblRegistration partialView = entities.tblRegistrations.Find(id);
+            if (partialView == null)
+            {
+                return HttpNotFound();
+            }
+            return View(partialView);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? id)
+        {
+            try
+            {
+                tblRegistration tblRegistration = entities.tblRegistrations.Find(id);
+                entities.tblRegistrations.Remove(tblRegistration);
+
+                tbllogin tbllogin = entities.tbllogins.Find(id);
+                entities.tbllogins.Remove(tbllogin);
+                
+                entities.SaveChanges();
+                return RedirectToAction("Deleteview");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

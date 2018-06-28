@@ -18,6 +18,13 @@
     });
 </script>
 
+
+<div class="glyphicon-align-center">  
+    <h3 style="float:right">@DateTime.Now</h3> 
+    @*<a href="@Url.Action("SignOut","Home")" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini" style="float:right">SignOut</a>*@
+</div>
+
+
     @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { returnUrl = Request["ReturnURL"] }))
     {
         @Html.AntiForgeryToken()
@@ -60,7 +67,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Login" class="btn btn-default" /> @*id="submitButton"*@
+                    <input type="submit" value="Login" class="btn btn-success" /> @*id="submitButton"*@
                 </div>
             </div>
         </div>
