@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -36,13 +37,7 @@ namespace WebAuthenticationSample.Controllers
         {
             List<tblRegistration> registrations = entities.tblRegistrations.ToList();
             return View(registrations);
-        }
-
-        [Authorize]
-        public ActionResult Update()
-        {
-            return View();
-        }
+        }        
 
         //[Authorize]
         //public ActionResult Delete()
@@ -98,7 +93,7 @@ namespace WebAuthenticationSample.Controllers
                         }
                         else if (dataitem.Role == "Update")
                         {
-                            return RedirectToAction("Update");
+                            return RedirectToAction("EditView");
                         }
                         else if (dataitem.Role == "Delete")
                         {
@@ -202,6 +197,7 @@ namespace WebAuthenticationSample.Controllers
         }
 
 
+        [Authorize(Roles = "Delete")]
         public ActionResult Deleteview()
         {
             List<tblRegistration> partialViews = entities.tblRegistrations.ToList();
@@ -242,6 +238,44 @@ namespace WebAuthenticationSample.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+
+        [Authorize(Roles="Update")]
+        public ActionResult EditView()
+        {
+            List<tblRegistration> tblRegistrations = entities.tblRegistrations.ToList();
+            return View(tblRegistrations);
+        }
+
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tblRegistration tblRegistration = entities.tblRegistrations.Find(id);
+            if (tblRegistration == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tblRegistration);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit()//[Bind(Include = "CustomerID,CustomerName,ContactMidName,PhoneNumber,EmailID,Password,ConfirmPassword")]Customer customer
+        {
+            if (ModelState.IsValid)
+            {
+                tblRegistration tblRegistration = new tblRegistration();
+                UpdateModel(tblRegistration);//UpdateModel<Customer>(customers);
+                entities.Entry(tblRegistration).State = EntityState.Modified;
+                entities.SaveChanges();
+                return RedirectToAction("EditView");
+            }
+            return View();
         }
     }
 }

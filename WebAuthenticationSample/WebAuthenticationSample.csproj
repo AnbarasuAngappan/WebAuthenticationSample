@@ -266,6 +266,8 @@
     <Content Include="Views\Home\Read.cshtml" />
     <Content Include="Views\Home\Deleteview.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\Home\EditView.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
