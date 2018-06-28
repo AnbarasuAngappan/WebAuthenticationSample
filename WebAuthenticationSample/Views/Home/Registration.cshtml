@@ -4,8 +4,15 @@
     ViewBag.Title = "Registration";
 }
 
-<h2>Registration</h2>
+<h2>Create User</h2>
 
+<br />
+
+<div class="glyphicon-align-center">
+    @*<a href="#Equipment" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini">Equipment</a>*@
+    <a href="@Url.Action("SignOut","Home")" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini" style="float:right">SignOut</a>
+
+</div>
 
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
@@ -15,6 +22,8 @@
         <div class="alert alert-success">
             <strong>Success!</strong> @ViewBag.Message
         </div>
+        <br />
+        @*@Html.ActionLink("Try to Login", "Login")*@
     }
 }
 else
@@ -27,6 +36,15 @@ else
             @*<h4>tblRegistration</h4>*@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -76,14 +94,6 @@ else
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create New User" class="btn btn-default" />
                 </div>
@@ -100,9 +110,9 @@ else
     }
 }
 
-<div>
-    @*@Html.ActionLink("Back to List", "Index")*@
-</div>
+@*<div>
+    @Html.ActionLink("Back to Login Page", "Login")
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

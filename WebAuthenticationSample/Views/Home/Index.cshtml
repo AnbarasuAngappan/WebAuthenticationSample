@@ -4,6 +4,14 @@
     ViewBag.Title = "Home Page";
 }
 
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @ViewBag.Message
+        <p>The Role of this Login User to view this page..</p>
+    </div>
+}
+
 <div class="row">
 
     @if (User.Identity.IsAuthenticated)
@@ -13,4 +21,10 @@
     }
 
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
 
