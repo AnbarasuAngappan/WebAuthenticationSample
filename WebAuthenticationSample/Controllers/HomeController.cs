@@ -31,13 +31,7 @@ namespace WebAuthenticationSample.Controllers
         //{
         //    return View();
         //}
-
-        [Authorize(Roles = "Read")]
-        public ActionResult Read()
-        {
-            List<tblRegistration> registrations = entities.tblRegistrations.ToList();
-            return View(registrations);
-        }        
+        
 
         //[Authorize]
         //public ActionResult Delete()
@@ -196,8 +190,14 @@ namespace WebAuthenticationSample.Controllers
             return View(registrationView);
         }
 
+        [Authorize(Roles = "Read")]
+        public ActionResult Read()
+        {
+            List<tblRegistration> registrations = entities.tblRegistrations.ToList();
+            return View(registrations);
+        }
 
-        [Authorize(Roles = "Delete")]
+        [Authorize(Roles = "Delete", Users ="kiru")]
         public ActionResult Deleteview()
         {
             List<tblRegistration> partialViews = entities.tblRegistrations.ToList();
