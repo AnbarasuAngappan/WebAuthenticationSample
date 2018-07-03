@@ -4,8 +4,6 @@
     ViewBag.Title = "Read";
 }
 
-<br />
-
 <div class="glyphicon-align-center">
     @*<a href="#Equipment" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini">Equipment</a>*@
     <a href="@Url.Action("SignOut","Home")" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini" style="float:right">SignOut</a>
@@ -13,6 +11,14 @@
 </div>
 
 <h2>User Details</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h4>Welcome User @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")</h4>
+    @*<a href="@Url.Action("SignOut","Home")">Logout</a>*@
+}
+
+
 
 <p>
     @*@Html.ActionLink("Create New", "Create")*@

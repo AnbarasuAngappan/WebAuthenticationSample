@@ -4,8 +4,6 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
-
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 @Scripts.Render("~/bundles/jquery")
 
@@ -19,10 +17,15 @@
 </script>
 
 
-<div class="glyphicon-align-center">  
-    <h3 style="float:right">@DateTime.Now</h3> 
-    @*<a href="@Url.Action("SignOut","Home")" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini" style="float:right">SignOut</a>*@
+<div class="jumbotron">
+    <h2>Login</h2>
+    <div class="glyphicon-align-center">
+        <h3 style="float:left">@DateTime.Now</h3>
+        @*<a href="@Url.Action("SignOut","Home")" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini" style="float:right">SignOut</a>*@
+    </div>
 </div>
+
+
 
 
     @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { returnUrl = Request["ReturnURL"] }))

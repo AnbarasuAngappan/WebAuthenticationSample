@@ -4,15 +4,19 @@
     ViewBag.Title = "Registration";
 }
 
-<h2>Create User</h2>
-
-<br />
 
 <div class="glyphicon-align-center">
     @*<a href="#Equipment" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini">Equipment</a>*@
-    <a href="@Url.Action("SignOut","Home")" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini" style="float:right">SignOut</a>
-
+    <a href="@Url.Action("SignOut","Home")"  style="float:right">SignOut</a>
 </div>
+
+<h3>Create User</h3>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h4>Welcome User @(User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")</h4>
+    @*<a href="@Url.Action("SignOut","Home")">Logout</a>*@
+}
 
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
@@ -111,8 +115,8 @@ else
 }
 
 @*<div>
-    @Html.ActionLink("Back to Login Page", "Login")
-</div>*@
+        @Html.ActionLink("Back to Login Page", "Login")
+    </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
