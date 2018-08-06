@@ -4,13 +4,13 @@
     ViewBag.Title = "EditView";
 }
 
-<div class="glyphicon-align-center">
+<div>
     @*<a href="#Equipment" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini">Equipment</a>*@
     <a href="@Url.Action("SignOut","Home")" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini" style="float:right">SignOut</a>
 
 </div>
 
-<h2>EditView</h2>
+@*<h2>EditView</h2>*@
 
 @if (User.Identity.IsAuthenticated)
 {

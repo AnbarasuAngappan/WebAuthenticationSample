@@ -5,12 +5,12 @@
 }
 
 
-<div class="glyphicon-align-center">
+<div>
     @*<a href="#Equipment" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini">Equipment</a>*@
     <a href="@Url.Action("SignOut","Home")"  style="float:right">SignOut</a>
 </div>
 
-<h3>Create User</h3>
+@*<h3>Create User</h3>*@
 
 @if (User.Identity.IsAuthenticated)
 {
